@@ -1,0 +1,186 @@
+@import '../../../mixins.scss';
+
+#start-container {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to right, #1c1c1c, #08463B);
+    @include dFlex($fd: column, $jc: center);
+}
+
+.title-box {
+    // margin-top: 390px;
+    @include dFlex($fd: column, $jc: center, $ai: center);
+    color: white;
+    > .jobtitle {
+        font-size: 40px;
+        text-align: center;
+    }
+    > .main-name {
+        color: white;
+        font-size: 128px;
+        font-family: 'Karla';
+        font-weight: 700;
+    }
+    > .main-name-split {
+        color: white;
+        font-size: 128px;
+        font-family: 'Karla';
+        font-weight: 700;
+        text-align: center;
+        display: none;
+    }
+}
+
+.start-buttons {
+    width: 363px;
+    @include dFlex($fd: row, $jc: space-between, $ai: flex-start);
+    margin-top: 20px;
+}
+
+.banderole {
+    width: calc(100vw + 10px);
+    height: 62px;
+    // margin-top: 390px;
+    position: absolute;
+    right: 0;
+    bottom: 100px;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    transform: rotate(-3deg) translateX(-10px);
+    z-index: 2;
+    backdrop-filter: blur(2.5px);
+}
+
+.scrolling-wrapper {
+    display: flex;
+    white-space: nowrap;
+    animation: scrollText 400s linear infinite;
+}
+
+.scrolling-text {
+    display: inline-block;
+    color: $standard-green; /* Setze hier die Textfarbe */
+    font-family: 'Karla';
+    font-size: 32px;
+    padding-right: 50px;
+    white-space: nowrap;
+    > span {
+        margin-right: 50px;
+    }
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.lines-container {
+    position: absolute;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    @include dFlex($fd: row, $jc: center, $ai: flex-end);
+    // @include margin-sides($le: 96px, $ri: 96px);
+}
+
+.lines-content {
+    width: 1920px;
+    @include margin-sides($le: 96px, $ri: 96px);
+    @include dFlex($fd: row, $jc: space-between, $ai: flex-end);
+}
+
+.line-element-left {
+
+    height: 312px; 
+    z-index: 1;
+    @include dFlex($fd: column, $jc: space-between, $ai: center);
+}
+
+.arrow-down {
+    width: 30px;
+    height: 48px;
+    border: 1px solid $standard-green;
+    border-radius: 15px;
+    @include dFlex($jc: center, $ai: center);
+    > img {
+        width: 17px;
+        position: relative; /* Ermöglicht die vertikale Bewegung */
+        animation: bounce 1s ease-in-out infinite;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0); /* Ausgangsposition */
+    }
+    50% {
+        transform: translateY(6px); /* Bewegung nach unten */
+    }
+}
+
+.line-left {
+    background-color: $standard-green;
+    width: 1px;
+    height: 240px;
+    
+}
+
+.line-element-right {
+
+    z-index: 1;
+    @include dFlex($fd: column, $jc: flex-end, $ai: center);
+    > a {
+        font-family: 'Karla';
+        font-weight: 400;
+        font-size: 18px;
+        transform: rotate(-90deg);
+        width: 20px;
+        padding-bottom: 3px;
+        margin-bottom: 12px;
+        &:hover {
+            color: $standard-green;
+        }
+
+    }
+}
+
+.line-right {
+    background-color: white;
+    width: 1px;
+    height: 236px;
+    margin-top: 24px;
+}
+
+.start-some {
+    @include dFlex($fd: row, $jc: flex-start, $ai: center);
+    gap: 4px;
+    padding-left: 12px;
+    margin-top: 12px;
+    &:hover {
+        cursor: pointer;
+    }
+    &:hover .link-dot {
+        opacity: 1;
+    };
+    &:hover img {
+        filter: brightness(0) invert(1); /* Bild wird weiß */
+        transition: filter 0.1s ease; /* Sanfter Übergang für den Filter */
+    }
+}
+
+@media (max-width: 1500px) {
+    .main-name {
+        display: none;
+    }
+    .main-name-split {
+        display: block !important;
+    }
+}

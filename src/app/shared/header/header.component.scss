@@ -1,0 +1,92 @@
+@import '../../../mixins.scss';
+
+#header-container {
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    top: 0;
+    right: 0;
+    left: 0;
+    @include dFlex($fd: row, $jc: center, $ai: flex-start);
+    
+}
+
+.header-content {
+    width: 1920px;
+    @include margin-sides($le: 96px, $ri: 96px);
+    @include margin-vertical($top: 48px, $bot: 0px);
+    @include dFlex($fd: row, $jc: space-between, $ai: center);
+    
+    > img {
+        width: 150px;
+        height: 169px;
+    }
+}
+
+.header-left {
+    @include dFlex($fd: row, $jc: space-between, $ai: center);
+    gap: 24px;
+}
+
+.translate-controller {
+    width: 84px;
+    height: 28px;
+    border-radius: 14px;
+    border: 1px solid #6AD7BF;
+    @include dFlex($fd: row, $jc: space-between, $ai: center);
+}
+
+.translate-en, .translate-de {
+    width: 44px;
+    height: 28px;
+    border-radius: 14px;
+    color: rgba(61,207,182,0.5);
+    @include dFlex($fd: row, $jc: center, $ai: center);
+    &:hover {
+        color: rgba(61,207,182,1);
+        cursor: pointer;
+    }
+}
+
+.translate-active {
+    background-color: #6AD7BF;
+    border: 1px solid #6AD7BF;
+    color: white;
+    font-weight: 700;
+    &:hover {
+        color: white;
+    }
+}
+
+
+.translate-en:hover ~ .translate-controller, 
+.translate-de:hover ~ .translate-controller, 
+.translate-controller:hover {
+    border: 1px solid white;
+}
+
+.header-links {
+    @include dFlex($fd: row, $jc: space-between, $ai: flex-start);
+    gap: 24px;
+    > a {
+        color: white;
+        font-size: 20px;
+    }
+}
+
+.header-single-link {
+    @include dFlex($jc: flex-start, $ai: center);
+    margin-top: 8px;
+    > a {
+        color: white;
+        font-size: 20px;
+        &:hover {
+            color: $standard-green;
+        }
+        &:hover + .link-dot {
+            opacity: 1;
+        }
+    }
+}
+
+

@@ -1,0 +1,29 @@
+<div id="header-container">
+    <div class="header-content">
+    
+    <div class="header-left">
+        <div class="translate-controller">
+            <div class="translate-en" [ngClass]="{'translate-active': activeLang === 'en'}" (click)="setActiveLang('en')">EN</div>
+            <div class="translate-de" [ngClass]="{'translate-active': activeLang === 'de'}" (click)="setActiveLang('de')">DE</div>
+        </div>
+        <div class="header-links">
+            <div class="header-single-link">
+                <a href="#">{{ getTranslation('HEADER.ABOUT') }}</a>
+                <div class="link-dot"></div>
+            </div>
+            <div class="header-single-link">
+                <a href="#">{{ getTranslation('HEADER.SKILLS') }}</a>
+                <div class="link-dot"></div>
+            </div>
+            <div class="header-single-link">
+                <a href="#">{{ getTranslation('HEADER.PROJECTS') }}</a>
+                <div class="link-dot"></div>
+            </div>
+        </div>
+        
+    </div>
+
+    <img src="../../../assets/img/logo.png" alt="">
+
+    </div>
+</div>
