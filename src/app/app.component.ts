@@ -1,8 +1,9 @@
-import { Component, ViewChild, ElementRef  } from '@angular/core';
+import { Component, Renderer2, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./shared/header/header.component";
 import { FooterComponent } from "./shared/footer/footer.component";
+
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,18 @@ import { FooterComponent } from "./shared/footer/footer.component";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'portfolio';
 
+  constructor(private renderer: Renderer2) {};
+
+  title = 'portfolio';
+  isProjectLayerVisible = false;
+
+  showLayer() {
+    this.isProjectLayerVisible = true;
+  }
+
+  hideLayer() {
+    this.isProjectLayerVisible = false;
+  }
+  
 }

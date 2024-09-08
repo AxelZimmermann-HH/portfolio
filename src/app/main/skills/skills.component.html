@@ -1,13 +1,13 @@
 <div id="skills-container">
     <div class="skills-content">
-        <h3>Technologies</h3>
+        <h3>{{ getTranslation('SKILLS.TOP_HEADLINE') }}</h3>
         <div class="skills-main-content">
             <div class="skills-left">
-                <h1>Skill Set</h1>
-                <p>My journey has involved working on diverse projects, employing a range of frontend technologies and concepts. I am open to embracing new technologies and methodologies to Continously enhance my skills and stay ahead in the ever-evolving landscape of web development.</p>
-                <h2>You need <span [ngStyle]="{'color': 'rgba(61,207,182,1)'}">another skill?</span></h2>
-                <p [ngStyle]="{'font-size': '16px'}">Feel free to contact me. I look forward to expanding on my previous knowledge.</p>
-                <button [ngStyle]="{'width': '130px'}"><span>Let's Talk</span></button>
+                <h1>{{ getTranslation('SKILLS.HEADLINE1') }}</h1>
+                <p>{{ getTranslation('SKILLS.TEXT1') }}</p>
+                <h2>{{ getTranslation('SKILLS.HEADLINE2') }}<span [ngStyle]="{'color': 'rgba(61,207,182,1)'}"> {{ getTranslation('SKILLS.HEADLINE_SPAN') }}</span></h2>
+                <p [ngStyle]="{'font-size': '16px'}">{{ getTranslation('SKILLS.TEXT2') }}</p>
+                <button [ngStyle]="{'width': '130px'}"><span>{{ getTranslation('SKILLS.BUTTON') }}</span></button>
             </div>
             
             <div class="skills-icons">
@@ -15,7 +15,7 @@
                     @if (index === skills.length - 1) {
                         <div class="skill-icon" (click)="openBubble($event)">
                             <img src="{{skill.img}}" alt="">
-                            <p>{{skill.text}}</p>
+                            <p [ngStyle]="{'color': isBubbleVisible ? 'rgba(61,207,182,1)' : 'white'}">{{skill.text}}</p>
                         </div>
                     } @else {
                         <div class="skill-icon">

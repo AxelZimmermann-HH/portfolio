@@ -18,7 +18,7 @@ export class TranslationsService {
     this.currentLanguage = lang;
   }
 
-  getTranslation(key: string): string {
+  getTranslation(key: string): any {
     // Splitte den Schlüssel, um verschachtelte Werte wie "HEADER.TITLE" zu finden
     return key.split('.').reduce((o: any, i) => o?.[i], this.translations[this.currentLanguage]);
   }
