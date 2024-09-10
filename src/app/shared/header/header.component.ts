@@ -1,16 +1,24 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { TranslationsService } from '../../services/translations.service';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+
+  isMobileMenu = false;
+
+  toggleMobileMenu(event: Event) {
+    event.stopPropagation(); // Verhindert, dass das globale Klick-Event sofort ausgelöst wird
+    this.isMobileMenu = !this.isMobileMenu;
+  }
 
   translationData = inject(TranslationsService);
 
@@ -23,5 +31,10 @@ export class HeaderComponent {
 
   getTranslation(key: string): string {
     return this.translationData.getTranslation(key);  // Übersetzung abrufen
+  }
+
+  @HostListener('document:click', ['$event'])
+  closeMobileMenu() {
+    this.isMobileMenu = false;
   }
 }

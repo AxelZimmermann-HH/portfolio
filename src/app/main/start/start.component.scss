@@ -8,7 +8,6 @@
 }
 
 .title-box {
-    // margin-top: 390px;
     @include dFlex($fd: column, $jc: center, $ai: center);
     color: white;
     > .jobtitle {
@@ -40,7 +39,6 @@
 .banderole {
     width: calc(100vw + 10px);
     height: 62px;
-    // margin-top: 390px;
     position: absolute;
     right: 0;
     bottom: 100px;
@@ -62,7 +60,7 @@
 
 .scrolling-text {
     display: inline-block;
-    color: $standard-green; /* Setze hier die Textfarbe */
+    color: $standard-green;
     font-family: 'Karla';
     font-size: 32px;
     padding-right: 50px;
@@ -88,7 +86,6 @@
     bottom: 0;
     left: 0;
     @include dFlex($fd: row, $jc: center, $ai: flex-end);
-    // @include margin-sides($le: 96px, $ri: 96px);
 }
 
 .lines-content {
@@ -98,7 +95,6 @@
 }
 
 .line-element-left {
-
     height: 312px; 
     z-index: 1;
     @include dFlex($fd: column, $jc: space-between, $ai: center);
@@ -112,17 +108,17 @@
     @include dFlex($jc: center, $ai: center);
     > img {
         width: 17px;
-        position: relative; /* Ermöglicht die vertikale Bewegung */
+        position: relative; 
         animation: bounce 1s ease-in-out infinite;
     }
 }
 
 @keyframes bounce {
     0%, 100% {
-        transform: translateY(0); /* Ausgangsposition */
+        transform: translateY(0); 
     }
     50% {
-        transform: translateY(6px); /* Bewegung nach unten */
+        transform: translateY(6px); 
     }
 }
 
@@ -134,21 +130,20 @@
 }
 
 .line-element-right {
-
+    width: 20px;
     z-index: 1;
     @include dFlex($fd: column, $jc: flex-end, $ai: center);
     > a {
         font-family: 'Karla';
         font-weight: 400;
         font-size: 18px;
-        transform: rotate(-90deg);
-        width: 20px;
-        padding-bottom: 3px;
-        margin-bottom: 12px;
+        white-space: nowrap;
+        transform: translateY(-50%) rotate(-90deg);
+        margin-bottom: 110px;
+        padding-bottom: 2px;
         &:hover {
             color: $standard-green;
         }
-
     }
 }
 
@@ -171,8 +166,8 @@
         opacity: 1;
     };
     &:hover img {
-        filter: brightness(0) invert(1); /* Bild wird weiß */
-        transition: filter 0.1s ease; /* Sanfter Übergang für den Filter */
+        filter: brightness(0) invert(1); 
+        transition: filter 0.1s ease; 
     }
 }
 
@@ -182,5 +177,74 @@
     }
     .main-name-split {
         display: block !important;
+    }
+}
+
+
+@media (max-width: 1200px) {
+    .lines-content {
+        width: 90%;
+        @include margin-sides($le: 0px, $ri: 0px);
+        @include dFlex($fd: row, $jc: space-between, $ai: flex-end);
+    }
+    .line-element-right a {
+        display: none;
+    }
+    .banderole {
+        bottom: 50px;
+    }
+}
+
+@media (max-width: 900px) {
+    .title-box {
+        > .jobtitle {
+            font-size: 24px;
+        }
+        > .main-name-split {
+            font-size: 62px;
+        }
+    }
+    .line-element-left {
+        height: 235px;
+    }
+    .line-left {
+        height: 170px;
+    }
+    .line-right {
+        height: 180px;
+    }
+}
+
+@media (max-height: 780px) {
+    .line-element-left {
+        height: 190px;
+    }
+    .line-left {
+        height: 120px;
+    }
+    .line-right {
+        height: 130px;
+    }
+}
+
+@media (max-width: 450px) {
+    .title-box {
+        > .jobtitle {
+            font-size: 20px;
+        }
+        > .main-name-split {
+            font-size: 46px;
+        }
+    }
+    .start-buttons {
+        width: 300px;
+        @include dFlex($fd: row, $jc: space-between, $ai: flex-start);
+        margin-top: 20px;
+        > a {
+            button {
+            width: 130px;
+            font-size: 16px;
+            }
+        }
     }
 }

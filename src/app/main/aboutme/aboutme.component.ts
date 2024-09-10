@@ -12,16 +12,14 @@ import { TranslationsService } from '../../services/translations.service';
 export class AboutmeComponent {
 
   translationData = inject(TranslationsService);
-
   activeLang: 'en' | 'de' = 'en';
 
   setActiveLang(lang: 'en' | 'de') {
     this.activeLang = lang;
-    this.translationData.setLanguage(lang);  // Aktualisiere die Sprache im Service
+    this.translationData.setLanguage(lang);  
   }
 
   getTranslation(key: string): string {
-    return this.translationData.getTranslation(key);  // Übersetzung abrufen
+    return this.translationData.getTranslation(key); 
   }
-
 }

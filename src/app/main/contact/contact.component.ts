@@ -2,17 +2,27 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { TranslationsService } from '../../services/translations.service';
+import { HttpClient } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterLink],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
 export class ContactComponent implements OnInit {
+
+  http = inject(HttpClient);
+
   isChecked = false;
   showCheckboxError = false;
+  successMail = false;
+  mailTest = false;
+  
+  translationData = inject(TranslationsService);
+  activeLang: 'en' | 'de' = 'en';
 
   placeholders = {
     name: '',
@@ -48,17 +58,58 @@ export class ContactComponent implements OnInit {
     }
   }
 
+  post = {
+    endPoint: 'https://axel-zimmermann.com/sendMail.php',
+    body: (payload: any) => JSON.stringify(payload),
+    options: {
+      headers: {
+        'Content-Type': 'text/plain',
+        responseType: 'text',
+      },
+    },
+  };
+
   onSubmit(ngForm: NgForm) {
     if (!this.isChecked) {
-      this.showCheckboxError = true;
+      this.handleCheckboxError();
       return;
     }
-
+  
     if (!ngForm.valid) {
       this.handleSubmitError(ngForm);
+      return;
+    }
+  
+    if (ngForm.submitted && ngForm.form.valid) {
+      this.processFormSubmission(ngForm);
+    }
+  }
+  
+  handleCheckboxError() {
+    this.showCheckboxError = true;
+  }
+  
+  processFormSubmission(ngForm: NgForm) {
+    if (!this.mailTest) {
+      this.submitForm(ngForm);
     } else {
       this.handleSubmitSuccess(ngForm);
+      ngForm.resetForm();
     }
+  }
+  
+  submitForm(ngForm: NgForm) {
+    this.http.post(this.post.endPoint, this.post.body(this.contactData))
+      .subscribe({
+        next: (response) => {
+          this.handleSubmitSuccess(ngForm);
+          ngForm.resetForm();
+        },
+        error: (error) => {
+          console.error(error);
+        },
+        complete: () => console.info('send post complete'),
+      });
   }
 
   handleSubmitError(ngForm: NgForm) {
@@ -92,24 +143,20 @@ export class ContactComponent implements OnInit {
   }
 
   handleSubmitSuccess(ngForm: NgForm) {
-    console.log(this.contactData);
-
     this.contactData.name = "";
     this.contactData.email = "";
     this.contactData.message = "";
-
     this.placeholders.name = this.getTranslation('CONTACTS.PLACEHOLDER1');
     this.placeholders.email = this.getTranslation('CONTACTS.PLACEHOLDER2');
     this.placeholders.message = this.getTranslation('CONTACTS.PLACEHOLDER3');
+    this.successMail = true;
+    this.isChecked = false;
 
     ngForm.resetForm();
+    setTimeout(() => {
+      this.successMail = false;
+    }, 2000);
   }
-
-  
-
-  translationData = inject(TranslationsService);
-
-  activeLang: 'en' | 'de' = 'en';
 
   setActiveLang(lang: 'en' | 'de') {
     this.activeLang = lang;
@@ -119,5 +166,4 @@ export class ContactComponent implements OnInit {
   getTranslation(key: string): string {
     return this.translationData.getTranslation(key);  
   }
-
 }

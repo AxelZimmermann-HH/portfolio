@@ -5,19 +5,55 @@
             <p>Web Developer</p>
             <p>Hamburg</p>
         </div>
+        
         <div class="footer-middle">
             <p>© Axel Zimmermann 2024</p>
         </div>
+
         <div class="footer-right">
-            <a href="#">Github</a>
-            <a href="#">LinkedIn</a>
-            <a href="#">Email</a>
-            <a href="#">Impressum</a>
+                <div class="link-right">
+                    <div class="dot"></div>
+                    <a href="https://github.com/AxelZimmermann-HH" target="_blank">Github</a>
+                </div>
+                <div class="link-right">
+                    <div class="dot"></div>
+                    <a href="https://www.linkedin.com/in/axel-zimmermann-0b143597/" target="_blank">LinkedIn</a>
+                </div>
+                <div class="link-right">
+                    <div class="dot"></div>
+                    <a href="mailto:axel@axel-zimmermann.com" >Email</a>
+                </div>
+                <div class="link-right">
+                    <div class="dot"></div>
+                    <a [routerLink]="['/impressum']">Impressum</a>
+                </div>
+            
+        </div>
+    </div>
+
+    <div class="footer-content-mobile">
+        <div class="footer-top">
+            <div class="footer-left">
+                <img src="../../../assets/img/logo.png" alt="">
+                <p>Web Developer</p>
+                <p>Hamburg</p>
+            </div>
+            <div class="footer-right-mobile">
+                @for (link of links; track link.text) {
+                    <div class="link-right">
+                        <div class="dot"></div>
+                        <a href={{link.link}}>{{link.text}}</a>
+                    </div>
+                }
+            </div>
+            
+            
         </div>
 
-
-
-
-
+        <div class="footer-bottom">
+            <div class="footer-middle">
+                <p>© Axel Zimmermann 2024</p>
+            </div>
+        </div>
     </div>
 </div>

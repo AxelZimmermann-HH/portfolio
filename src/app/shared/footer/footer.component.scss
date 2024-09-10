@@ -14,14 +14,32 @@
     width: 1350px;
     position: relative;
     @include margin-sides($le: 96px, $ri: 96px);
-    // > p {
-    //     font-family: 'Karla';
-    //     font-weight: 400;
-    //     font-size: 18px;
-    //     color: white;
-    //     padding-bottom: 32px;
-    //     line-height: 1.4;
-    // }
+}
+
+.footer-content-mobile {
+    @include dFlex($fd: column, $jc:flex-start, $ai: center);
+    width: 90%;
+    position: relative;
+    display: none;
+    gap: 50px;
+    @include margin-sides($le: 0px, $ri: 0px);
+}
+
+.footer-top {
+    width: 100%;
+    @include dFlex($fd: row, $jc:space-between, $ai: center);
+}
+
+.footer-right-mobile {
+    @include dFlex($fd: column, $jc:flex-start, $ai: flex-start);
+    gap: 8px;
+    > .link-right {
+        > a {
+            font-family: 'Karla';
+            font-weight: 400;
+            font-size: 16px; 
+        }
+    }
 }
 
 .footer-left, .footer-right {
@@ -34,16 +52,46 @@
     > p, a {
         font-family: 'Karla';
         font-weight: 400;
-        font-size: 16px;
-        
+        font-size: 16px;   
     }
 }
 
-.display-left {
-
+.link-right {
+    @include dFlex($fd: row, $jc: flex-start, $ai: center);
+    gap: 5px;
+    > a {
+        color: white;
+        transition: color 0.15s ease;
+    };
+    > .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: $standard-green;
+        opacity: 0;
+        transition: opacity 0.15s ease;
+    };
+    &:hover {
+        > a {
+          color: $standard-green;
+        }
+    
+        .dot {
+          opacity: 1;
+        }
+      }
 }
 
 .footer-middle p {
         font-size: 18px;
         color: $standard-green
+}
+
+@media (max-width: 900px) {
+    .footer-content {
+        display: none;
+    }
+    .footer-content-mobile {
+        display: flex;
+    }
 }

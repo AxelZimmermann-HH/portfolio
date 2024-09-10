@@ -3,12 +3,9 @@
 #quotes-container {
     width: 100%;
     position: relative;
-    // background: radial-gradient(ellipse at left, #08463B 5%, #1C1C1C 70%);
-    // background: radial-gradient(ellipse 50% 100% at left, #08463B 5%, #1C1C1C 30%);
     background: $standard-background;
     padding-bottom: 150px;
     gap: 50px;
-
     @include dFlex($fd: row, $jc: center, $ai: center);
 }
 
@@ -21,6 +18,7 @@
         color: $standard-green;
         font-size: 32px; 
         font-family: 'Fira Code';
+        text-align: center;
     }
     > p {
         font-family: 'Karla';
@@ -75,10 +73,6 @@
     background-color: rgba(61,207,182,0.3);
     padding: 32px;
     @include dFlex($fd: column, $jc: space-between, $ai: flex-start);
-
-
-
-
     > p {
         font-family: 'Karla';
         font-weight: 400;
@@ -92,34 +86,22 @@
 .small-quote {
     height: 220px;
     background-color: rgba(61,207,182,0.1);
-
-
-    > p {
-        font-family: 'Karla';
-        font-weight: 400;
-        font-size: 20px;
-        color: white;
-        padding-bottom: 32px;
-        line-height: 1.4;
-    }
 }
 
 .quote-bottom {
     @include dFlex($fd: row, $jc: space-between, $ai: center);
     gap: 30px;
-    width: 634px;
-    
+    width: 634px; 
     > .person {
         font-family: 'Karla';
         font-weight: 400;
         font-size: 18px;
         color: white;
     }
-
     > .quote-line {
         height: 1px;
         background-color: white;
-        flex: 1; // Nimmt den restlichen verfügbaren Platz ein
+        flex: 1; 
     }
 }
 
@@ -153,3 +135,57 @@
     background-color: $standard-green !important;
 }
 
+@media (max-width: 1440px) {
+    .quotes-content {
+        width: 90%;
+        @include margin-sides($le: 0px, $ri: 0px);
+    }
+    .carousel {
+        width: 100%;
+    }
+}
+
+@media (max-width: 950px) {
+    .carousel {
+        &::before {
+            z-index: 0;
+        }
+    }
+    .quotes-content {
+        width: 100%;
+    }
+}
+
+@media (max-width: 800px) {
+    .quotes-content {
+        > h2 {
+            font-size: 24px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
+    .quote {
+        width: 400px;
+    }
+    .quote-bottom {
+        width: 380px;
+    }
+}
+
+@media (max-width: 550px) {
+    .quote {
+        width: 190px;
+        > p {
+            font-size: 18px;
+            padding-bottom: 48px;
+            line-height: 1.2;
+        }
+    }
+    .quote-bottom {
+        width: 190px;
+        gap: 15px;
+    }
+    .person p {
+        font-size: 14px;
+    }
+}

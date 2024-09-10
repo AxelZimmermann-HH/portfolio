@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss'
 })
+
 export class SkillsComponent {
 
   skills: Array<{ img: string, text: string }> = [
@@ -26,7 +27,6 @@ export class SkillsComponent {
   ]
 
   translationData = inject(TranslationsService);
-
   activeLang: 'en' | 'de' = 'en';
 
   setActiveLang(lang: 'en' | 'de') {
@@ -41,7 +41,6 @@ export class SkillsComponent {
   isBubbleVisible = false;
 
   @ViewChild('bubbleRef') bubbleRef!: ElementRef;
-
   openBubble(event: MouseEvent) {
     this.isBubbleVisible = true;
     event.stopPropagation();

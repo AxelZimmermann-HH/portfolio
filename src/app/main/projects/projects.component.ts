@@ -9,6 +9,7 @@ import { TranslationsService } from '../../services/translations.service';
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss'
 })
+
 export class ProjectsComponent {
 
   @Output() projectClicked = new EventEmitter<number>();
@@ -36,7 +37,6 @@ export class ProjectsComponent {
   }
 
   translationData = inject(TranslationsService);
-
   activeLang: 'en' | 'de' = 'en';
 
   setActiveLang(lang: 'en' | 'de') {
@@ -47,5 +47,4 @@ export class ProjectsComponent {
   getTranslation(key: string): string {
     return this.translationData.getTranslation(key);  
   }
-
 }

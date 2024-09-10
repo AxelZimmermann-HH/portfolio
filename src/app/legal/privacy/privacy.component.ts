@@ -1,26 +1,26 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { TranslationsService } from '../../services/translations.service';
 
 @Component({
-  selector: 'app-start',
+  selector: 'app-privacy',
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: './start.component.html',
-  styleUrl: './start.component.scss'
+  imports: [],
+  templateUrl: './privacy.component.html',
+  styleUrl: './privacy.component.scss'
 })
 
-export class StartComponent {
+export class PrivacyComponent {
 
   translationData = inject(TranslationsService);
   activeLang: 'en' | 'de' = 'en';
 
   setActiveLang(lang: 'en' | 'de') {
     this.activeLang = lang;
-    this.translationData.setLanguage(lang);  
+    this.translationData.setLanguage(lang);
   }
 
   getTranslation(key: string): string {
-    return this.translationData.getTranslation(key); 
+    return this.translationData.getTranslation(key);
   }
+
 }

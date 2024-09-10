@@ -56,6 +56,7 @@
 .skills {
     @include dFlex($fd: row, $jc: flex-start, $ai: flex-start); 
     gap: 15px;
+    flex-wrap: wrap;
     padding-top: 20px;
     padding-bottom: 20px;
     > .skill {
@@ -77,23 +78,25 @@
     gap: 30px;
     padding-top: 20px;
 
-    > button {
-        @include dFlex($fd: row, $jc: center, $ai: center); 
-        gap: 4px;
-        width: 140px;
-        cursor: pointer;
-        transition: border-color 0.15s ease;
+    > a {
+        button {
+            @include dFlex($fd: row, $jc: center, $ai: center); 
+            gap: 4px;
+            width: 140px;
+            cursor: pointer;
+            transition: border-color 0.15s ease;
 
-        img {
-            transition: transform 0.3s ease; 
-        }
+            img {
+                transition: transform 0.3s ease; 
+            }
 
-        &:hover {
-            border-color: $standard-green;
-        }
+            &:hover {
+                border-color: $standard-green;
+            }
 
-        &:hover img {
-            transform: translate(7px, -4px); 
+            &:hover img {
+                transform: translate(7px, -4px); 
+            }
         }
     }
 }
@@ -111,7 +114,7 @@
     cursor: pointer;
     &:hover {
         filter: brightness(0) saturate(100%) invert(82%) sepia(21%) saturate(1177%) hue-rotate(112deg) brightness(84%) contrast(92%);
-        transform: scale(1.3); /* Vergrößert das Element um 10% */
+        transform: scale(1.3); 
         transition: transform 0.3s ease;
     }
 }
@@ -125,7 +128,6 @@
         gap: 10px;
         cursor: pointer;
         transition: color 0.3s ease, transform 0.3s ease;
-
         > p {
             color: $standard-green;
             font-size: 18px;
@@ -133,22 +135,93 @@
             font-weight: 400;
             transition: color 0.3s ease; 
         }
-
         > img {
             transition: transform 0.3s ease; 
         }
-
         &:hover > p {
             color: white; 
         }
     }
-
     > .button-right:first-child:hover > img {
         transform: translateX(-10px); 
     }
-
     > .button-right:last-child:hover > img {
         transform: translateX(10px); 
+    }
+}
+
+
+.inner-layer-mobile {
+    display: none;
+    background: linear-gradient(45deg, #1c1c1c 40%, #08463B 100%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 1px solid $standard-green;
+    border-radius: 30px;
+    padding: 50px;
+    width: 80%;
+}
+
+@media (max-width: 1440px) {
+    .inner-layer {
+        display: none;
+    }
+    .inner-layer-mobile {
+        @include dFlex($fd: column, $jc: flex-start, $ai: center);
+        padding: 20px;
+        max-height: 80%;
+        height: auto;
+        
+        > img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 30px;
+        }
+    }
+    .close {
+        @include dFlex($fd: row, $jc: flex-end, $ai: flex-start);
+        width: 100%;
+        padding-bottom: 25px;
+        &:hover {
+            filter: brightness(0) saturate(100%) invert(82%) sepia(21%) saturate(1177%) hue-rotate(112deg) brightness(84%) contrast(92%);
+            transform: scale(1.1); 
+            transition: transform 0.3s ease;
+        }
+    }
+    .layer-left {
+        padding-top: 30px;
+        width: 100%;
+        overflow-y: scroll;
+        max-width: 500px;
+        > .number {
+            font-size: 72px;
+        }
+        > .project-name {
+            font-size: 56px;
+            margin-top: -10px;
+            padding-bottom: 20px;
+        }
+        > h2 {
+            font-size: 24px; 
+        }
+        > p {
+            font-size: 16px;
+            padding-bottom: 20px;
+        }
+    }
+    .layer-right {
+        padding-top: 40px;
+        height: auto;
+    }
+}
+
+@media (max-width: 400px) {
+    .buttons-left {
+        gap: 15px;
+        > a {
+            button {
+                width: 120px;
+            }
+        }
     }
 }
 

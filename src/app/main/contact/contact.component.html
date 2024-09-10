@@ -12,7 +12,7 @@
 
         <div class="contacts-right">
         
-            <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+            <form #ngForm="ngForm" (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
 
                 <div class="line"></div>
 
@@ -48,18 +48,21 @@
                     <div class="checkbox" (click)="toggleCheckbox()">
                         <img [src]="isChecked ? '../../../assets/img/check_checked.svg' : '../../../assets/img/check_empty.svg'" alt="" alt="">
                     </div>
-                    <p>{{ getTranslation('CONTACTS.TEXT3') }} <a href="#">{{ getTranslation('CONTACTS.SPAN2') }}</a> {{ getTranslation('CONTACTS.TEXT4') }}</p>
+                    <p>{{ getTranslation('CONTACTS.TEXT3') }} <a [routerLink]="['/privacy']" target="_blank">{{ getTranslation('CONTACTS.SPAN2') }}</a> {{ getTranslation('CONTACTS.TEXT4') }}</p>
                 </div>
                 @if (showCheckboxError) {
                     <p>Please accept the privacy policy.</p>
                 }
-                <div class="submit-area">
-                    <button type="submit" value="Submit">{{ getTranslation('CONTACTS.BUTTON') }}</button>
-                </div>
+                @if (successMail) {
+                    <p class="success">Thanks for your message! I will respond asap!</p>
+                }
+                @if (isChecked && ngForm.form.valid) {
+                    <div class="submit-area">
+                        <button type="submit" value="Submit">{{ getTranslation('CONTACTS.BUTTON') }}</button>
+                    </div>
+                }
 
             </form>
-
         </div>
-
     </div>
 </div>

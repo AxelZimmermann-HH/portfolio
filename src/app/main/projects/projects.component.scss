@@ -3,12 +3,9 @@
 #projects-container {
     width: 100%;
     position: relative;
-    // background: radial-gradient(ellipse at left, #08463B 5%, #1C1C1C 70%);
-    // background: radial-gradient(ellipse 50% 100% at left, #08463B 5%, #1C1C1C 30%);
-    background: radial-gradient(ellipse 50% 100% at 0% 60%, #08463B 5%, #1C1C1C 30%);
+    background-color: $standard-background;
     padding-bottom: 150px;
     gap: 50px;
-
     @include dFlex($fd: row, $jc: center, $ai: center);
 }
 
@@ -58,11 +55,9 @@
             font-size: 24px;
         };
         > img {
-            opacity: 0;
-            
+            opacity: 0;        
         }
-    }
-    
+    } 
     > P {
         font-family: 'Karla';
         font-weight: 400;
@@ -83,19 +78,55 @@
     > img {
         width: 330px;
         border-radius: 16px;
-        position: absolute; /* Ermöglicht das freie Positionieren */
-        top: -15px; /* Leicht nach oben versetzt */
-        right: 22px; /* Leicht nach rechts versetzt */
+        position: absolute; 
+        top: -15px; 
+        right: 22px; 
         z-index: 2;
     }
-
     > .square {
         width: 330px; 
         height: 225px; 
         background-color: #1c1c1c; 
         background-image: url("../../../assets/img/diagonal-lines.svg");
-        background-size: 25px 25px; /* Abstand der Linien */
+        background-size: 25px 25px; 
         border-radius: 16px;
         z-index: 1;   
+    }
+}
+
+@media (max-width: 1440px) {
+    .project-previews {
+        display: none;
+    }
+}
+
+@media (max-width: 1070px) {
+    .projects-content {
+        width: 90%;
+        @include margin-sides($le: 0px, $ri: 0px);
+    }
+    .projects-list {
+        width: 100%
+    }
+    .project-line {
+        width: 100%
+    }
+    .project-details {
+        width: 100%;
+        box-sizing: border-box;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media (max-width: 550px) {
+    h1 {
+        font-size: 40px;
+    };
+    h3 {
+        font-size: 20px;
+    }
+    .projects-content p {
+        font-size: 16px;
     }
 }

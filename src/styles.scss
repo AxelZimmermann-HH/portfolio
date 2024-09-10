@@ -1,5 +1,9 @@
 @import './mixins.scss';
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     width: 100%;
@@ -7,7 +11,32 @@ body {
     background-color: rgb(192, 199, 192);
     font-family: 'Fira Code';
     font-weight: 400;
-    // overflow-x: hidden;
+    overflow-x: hidden;
+    /* Für Webkit-basierte Browser (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 6px; /* Sehr schmale Scrollbar */
+  height: 6px; /* Für horizontale Scrollbars */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Hintergrund der Scrollbar (unsichtbar) */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: black; /* Schwarze Scrollbar */
+  border-radius: 10px; /* Runde Ecken */
+  border: 1px solid rgba(61, 207, 182, 1); /* Rahmen in der gewünschten Farbe */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: black; /* Beim Hover bleibt die Farbe schwarz */
+}
+
+/* Für Firefox */
+* {
+  scrollbar-color: black rgba(61, 207, 182, 0.1); /* Thumb: Schwarz, Track: leicht transparent */
+  scrollbar-width: thin; /* Sehr schmale Scrollbar */
+}
 }
 
 p {
@@ -152,3 +181,5 @@ h3 {
     font-weight: 500;
     src: url('./assets/fonts/karla-v31-latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
   }
+
+
